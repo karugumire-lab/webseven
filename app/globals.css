@@ -1159,7 +1159,7 @@ header {
 /* Dark variant */
 .why-dark {
   padding: 5rem 0;
-  background: var(--ink);
+  background: #2d1f3d;
 }
 
 .why-dark h2          { color: #fff; }
