@@ -1347,6 +1347,99 @@ details p {
 
 .faq-group + .faq-group { margin-top: 3.5rem; }
 
+/* Editorial product detail */
+.product-editorial {
+  padding: 1.5rem 0 5.5rem;
+  background: #f3eee8;
+  color: #29241f;
+}
+
+.product-editorial .crumbs { margin-bottom: 1.6rem; color: #77716b; }
+.product-editorial .crumbs span { margin: 0 .55rem; color: #aaa39b; }
+
+.product-editorial .product-top {
+  grid-template-columns: minmax(0, 1.12fr) minmax(340px, .78fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.product-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(130px, .72fr);
+  grid-template-rows: minmax(220px, 1fr) minmax(220px, 1fr) auto;
+  gap: .8rem;
+}
+
+.product-photo { min-width: 0; margin: 0; overflow: hidden; background: #e8e2dc; }
+.product-photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.32); }
+.product-photo-main { grid-row: span 2; min-height: 540px; }
+.product-gallery .product-photo:not(.product-photo-main) { min-height: 0; }
+.gallery-caption { display: flex; justify-content: space-between; grid-column: 1 / -1; margin: .2rem 0 0; color: #746d65; font-size: .68rem; letter-spacing: .12em; }
+
+.product-summary { position: sticky; top: 7rem; padding-top: 1.3rem; }
+.product-eyebrow { margin: 0 0 1.1rem; color: #74695e; font-size: .68rem; font-weight: 600; letter-spacing: .15em; }
+.eyebrow-dot { display: inline-block; width: .5rem; height: .5rem; margin-right: .45rem; border-radius: 50%; background: var(--plum); vertical-align: 1px; }
+.product-summary h1 { max-width: 10ch; margin: 0; font: 500 clamp(2.8rem, 5vw, 4.7rem)/.98 var(--display); letter-spacing: -.055em; }
+.product-intro { max-width: 34rem; margin: 1.4rem 0 1.5rem; color: #6e675f; font-size: 1.05rem; line-height: 1.65; }
+.product-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+.product-tags span { padding: .4rem .7rem; border: 1px solid #d8d0c7; border-radius: 99px; color: #5b554d; font-size: .75rem; }
+.product-enquiry { margin-top: 2.3rem; padding-top: 1.5rem; border-top: 1px solid #d8d0c7; }
+.product-enquiry p { margin: .4rem 0 1rem; color: #6e675f; font-size: .92rem; }
+.product-enquiry .enquiry-kicker { margin: 0; color: #29241f; font: 500 1.35rem/1.2 var(--display); }
+.product-enquiry .btn { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 1.2rem; padding: 1rem 1.2rem; }
+.product-contact, .text-link { display: inline-flex; gap: .55rem; align-items: center; color: #44344f; font-size: .85rem; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.product-contact { margin-top: 1rem; }
+.product-promise { display: flex; gap: .8rem; align-items: flex-start; margin-top: 2rem; color: #54435f; }
+.product-promise > span { font-size: 1.35rem; line-height: 1.2; }
+.product-promise p { margin: 0; font-size: .86rem; }
+.product-promise small { color: #817970; font-size: .76rem; }
+
+.product-story { padding: 5.5rem 0; background: #fff; }
+.product-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+.product-story h2, .product-process h2, .product-related h2 { margin: 0; font: 500 clamp(2.2rem, 4vw, 3.5rem)/1.04 var(--display); letter-spacing: -.045em; }
+.product-story-copy { max-width: 37rem; margin: 0 0 1.5rem; color: #625d58; font-size: 1.08rem; }
+.product-process { padding: 5.5rem 0; background: #f3eee8; }
+.product-process-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; }
+.product-process-heading > p { max-width: 23rem; margin: 0; color: #6e675f; }
+.product-process .product-eyebrow, .product-related .product-eyebrow { margin-bottom: .8rem; }
+.product-steps { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 3rem; border-top: 1px solid #d8d0c7; }
+.product-steps article { padding: 1.2rem 1.5rem 0 0; }
+.product-steps article + article { padding-left: 1.5rem; border-left: 1px solid #d8d0c7; }
+.product-steps article > span { color: #8e7d6e; font-size: .72rem; letter-spacing: .12em; }
+.product-steps h3 { margin: 1.6rem 0 .5rem; font: 500 1.4rem var(--display); }
+.product-steps p { max-width: 24rem; margin: 0; color: #6e675f; font-size: .9rem; }
+.product-related { padding: 5.5rem 0 6rem; background: #fff; }
+.product-related .head-row { align-items: end; margin-bottom: 2rem; }
+.product-related-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.product-related-card { text-decoration: none; }
+.product-related-card > div { overflow: hidden; aspect-ratio: 1.14; background: #f3eee8; }
+.product-related-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.product-related-card:hover img { transform: scale(1.035); }
+.product-related-card > span { display: block; margin-top: 1rem; color: #817970; font-size: .67rem; letter-spacing: .12em; }
+.product-related-card h3 { margin: .25rem 0; font: 500 1.5rem var(--display); }
+.product-related-card p { margin: 0; color: #77716b; font-size: .86rem; }
+
+@media (max-width: 800px) {
+  .product-editorial .product-top { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .product-summary { position: static; max-width: 42rem; padding-top: 0; }
+  .product-story-grid { gap: 2rem; }
+}
+
+@media (max-width: 600px) {
+  .product-editorial { padding: 1rem 0 3.5rem; }
+  .product-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(300px, 1fr) 120px auto; gap: .5rem; }
+  .product-photo-main { grid-row: 1; grid-column: 1 / -1; min-height: 0; }
+  .product-gallery .product-photo:not(.product-photo-main) { min-height: 120px; }
+  .product-summary h1 { font-size: clamp(2.7rem, 14vw, 4rem); }
+  .product-story, .product-process, .product-related { padding: 3.5rem 0; }
+  .product-story-grid, .product-process-heading { grid-template-columns: 1fr; display: grid; gap: 1.2rem; }
+  .product-steps { grid-template-columns: 1fr; margin-top: 2rem; }
+  .product-steps article, .product-steps article + article { padding: 1.2rem 0; border-left: 0; border-bottom: 1px solid #d8d0c7; }
+  .product-steps h3 { margin-top: .7rem; }
+  .product-related-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem .8rem; }
+  .product-related-card:last-child { display: none; }
+  .product-related .head-row { align-items: start; gap: 1rem; }
+}
+
 
 /* ============================================================
    19. PRODUCT DETAIL
