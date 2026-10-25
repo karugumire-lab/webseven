@@ -56,10 +56,36 @@ document.querySelectorAll("[data-enquire-product]").forEach((link) => {
   link.href = `${destination.pathname}${destination.search}${destination.hash}`;
 });
 
-const productContext = new URLSearchParams(window.location.search).get("product");
+const productOptions = document.querySelector("[data-product-options]");
+const productQuoteLink = document.querySelector("[data-product-quote-link]");
+if (productOptions && productQuoteLink) {
+  const updateProductQuoteLink = () => {
+    const preferences = [...productOptions.querySelectorAll("[data-option-label]")]
+      .map((group) => {
+        const selected = group.querySelector('input:checked, select');
+        const value = selected?.value?.trim();
+        return value ? `${group.dataset.optionLabel}: ${value}` : "";
+      })
+      .filter(Boolean);
+    const destination = new URL(productQuoteLink.href, window.location.href);
+    if (preferences.length) destination.searchParams.set("options", preferences.join("; "));
+    else destination.searchParams.delete("options");
+    productQuoteLink.href = `${destination.pathname}${destination.search}${destination.hash}`;
+  };
+  productOptions.addEventListener("change", updateProductQuoteLink);
+  updateProductQuoteLink();
+}
+
+const query = new URLSearchParams(window.location.search);
+const productContext = query.get("product")?.slice(0, 100);
+const optionContext = query.get("options")?.slice(0, 500);
 const contactMessage = document.getElementById("c-msg");
-if (productContext && contactMessage) {
-  contactMessage.value = `I’m interested in ${productContext}. `;
+if ((productContext || optionContext) && contactMessage) {
+  contactMessage.value = [
+    productContext ? `I’m interested in ${productContext}.` : "",
+    optionContext ? `Preferences to discuss: ${optionContext}.` : "",
+    ""
+  ].filter(Boolean).join("\n\n");
 }
 
 // Enquiry form
