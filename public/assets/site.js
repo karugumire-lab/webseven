@@ -95,7 +95,6 @@ document.querySelectorAll("form.enq").forEach((form) => {
       ["Email", "email"],
       ["Company", "company"],
       ["Quantity", "quantity"],
-      ["Project type", "interest"],
       ["Needed", "needed"]
     ];
 

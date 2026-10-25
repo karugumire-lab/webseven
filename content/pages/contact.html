@@ -66,20 +66,26 @@
       <a href="mailto:aaron@seungilchem.com">aaron@seungilchem.com</a>
     </div>
   </aside>
-  <form class="form enq contact-form" novalidate>
+  <form class="form enq contact-form" id="contact-form" novalidate>
     <div class="contact-form-heading"><p>START A CONVERSATION</p><h2>Tell us about your project.</h2></div>
+    <div class="contact-quote-banner">
+      <p>Want to save time and get a final quotation?</p>
+      <a href="#contact-form-fields">Fill in our detailed quote form <span aria-hidden="true">→</span></a>
+    </div>
+    <div id="contact-form-fields">
     <div class="row2">
       <div><label for="c-name">Your name <span class="req" aria-hidden="true">*</span></label><input id="c-name" name="name" autocomplete="name" required></div>
-      <div><label for="c-email">Work email <span class="req" aria-hidden="true">*</span></label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+      <div><label for="c-email">Email <span class="req" aria-hidden="true">*</span></label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
       <div><label for="c-company">Company <span class="req" aria-hidden="true">*</span></label><input id="c-company" name="company" autocomplete="organization" required></div>
       <div><label for="c-quantity">Estimated quantity</label><input id="c-quantity" name="quantity" inputmode="numeric" placeholder="e.g. 3,000 sets"></div>
     </div>
-    <div class="row2 contact-select-row">
-      <div><label for="c-interest">What are you looking for?</label><select id="c-interest" name="interest"><option value="">Choose a project type</option><option>Custom design</option><option>OEM / ODM</option><option>Private label</option><option>Custom packaging</option><option>Wholesale collection</option></select></div>
-      <div><label for="c-needed">When are you planning to launch?</label><select id="c-needed" name="needed"><option value="">Choose a timeframe</option><option>Within 1 month</option><option>In 2–3 months</option><option>In 3–6 months</option><option>Flexible</option></select></div>
+    <div class="contact-timeframe">
+      <label for="c-needed">When do you need the products?</label>
+      <select id="c-needed" name="needed"><option value="">Select a timeframe</option><option>Within 2 weeks</option><option>Within 1 month</option><option>In 2–3 months</option><option>Flexible</option></select>
     </div>
-    <label for="c-msg">Tell us a little more <span class="req" aria-hidden="true">*</span></label>
-    <textarea id="c-msg" name="message" placeholder="Your design direction, target market, finishes or packaging ideas…" required></textarea>
+    <label for="c-msg">What do you need? <span class="req" aria-hidden="true">*</span></label>
+    <textarea id="c-msg" name="message" placeholder="Products, designs, packaging…" required></textarea>
+    </div>
     <p class="error" role="alert" aria-live="polite"></p>
     <div class="contact-submit-row"><button type="submit" class="btn">Send enquiry <span aria-hidden="true">↗</span></button><p>Your email app will open with your enquiry ready to send.</p></div>
   </form>

@@ -2113,11 +2113,16 @@ footer {
 .contact-form-heading { padding: 1.2rem 0 1.4rem; }
 .contact-form-heading p { margin: 0 0 .55rem; color: #81756c; font-size: .63rem; letter-spacing: .14em; }
 .contact-form-heading h2 { margin: 0; font: 400 clamp(2rem, 3.5vw, 3rem)/1.05 var(--display); }
+.contact-quote-banner { margin: 0 0 1.25rem; padding: 1rem 1.1rem; background: #f3eee8; }
+.contact-quote-banner p { margin: 0 0 .3rem; color: #4e453f; font-size: .82rem; }
+.contact-quote-banner a { color: #54345f; font-size: .85rem; font-weight: 600; text-decoration: none; }
+.contact-quote-banner a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .contact-form .row2 { gap: .15rem 1.2rem; }
 .contact-form label { margin: 1.1rem 0 .4rem; color: #514943; font-size: .73rem; font-weight: 500; }
 .contact-form input, .contact-form select, .contact-form textarea { min-height: 3rem; padding: .7rem .8rem; border: 1px solid #d8d0c7; border-radius: 3px; background: #fff; color: #29241f; font: 400 .82rem/1.5 var(--body); }
 .contact-form input::placeholder, .contact-form textarea::placeholder { color: #81756c; opacity: 1; }
 .contact-form textarea { min-height: 9rem; resize: vertical; }
+.contact-timeframe { margin-bottom: .8rem; }
 .contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid #9b4dca; outline-offset: 2px; border-color: #9b4dca; }
 .contact-form .req { margin-left: .12rem; }
 .contact-submit-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.3rem; margin-top: 1.4rem; }
@@ -2135,6 +2140,5 @@ footer {
   .contact-intro { padding-bottom: 3rem; }
   .contact-intro .crumbs { margin-bottom: 3rem; }
   .contact-main { padding: 3rem 0; }
-  .contact-select-row { gap: .15rem 0; }
   .contact-submit-row { align-items: flex-start; flex-direction: column; }
 }
