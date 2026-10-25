@@ -3,7 +3,7 @@
    SHARED SCRIPT FOR EVERY PAGE
    ========================================================= */
 
-const CONTACT_EMAIL = "you@yourcompany.com";
+const CONTACT_EMAIL = "aaron@seungilchem.com";
 
 // Update the copyright year
 document.querySelectorAll(".yr").forEach((el) => {
@@ -48,22 +48,18 @@ if (catalog) {
   });
 }
 
-// Quote popup
-const dlg = document.getElementById("enquiry");
+// Keep product context when a catalogue card opens the contact page.
+document.querySelectorAll("[data-enquire-product]").forEach((link) => {
+  const destination = new URL(link.href, window.location.href);
+  if (destination.origin !== window.location.origin) return;
+  destination.searchParams.set("product", link.dataset.enquireProduct.slice(0, 100));
+  link.href = `${destination.pathname}${destination.search}${destination.hash}`;
+});
 
-if (dlg) {
-  document.querySelectorAll("[data-enquire]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      const error = dlg.querySelector(".error");
-      if (error) error.textContent = "";
-      if (!dlg.open) dlg.showModal();
-    });
-  });
-
-  document.querySelectorAll("[data-close]").forEach((button) => {
-    button.addEventListener("click", () => dlg.close());
-  });
+const productContext = new URLSearchParams(window.location.search).get("product");
+const contactMessage = document.getElementById("c-msg");
+if (productContext && contactMessage) {
+  contactMessage.value = `I’m interested in ${productContext}. `;
 }
 
 // Enquiry form
@@ -99,6 +95,7 @@ document.querySelectorAll("form.enq").forEach((form) => {
       ["Email", "email"],
       ["Company", "company"],
       ["Quantity", "quantity"],
+      ["Project type", "interest"],
       ["Needed", "needed"]
     ];
 
@@ -116,7 +113,6 @@ document.querySelectorAll("form.enq").forEach((form) => {
       `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}` +
       `&body=${encodeURIComponent(body)}`;
 
-    if (dlg && dlg.open) dlg.close();
   });
 });
 
