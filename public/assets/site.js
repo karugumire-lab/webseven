@@ -76,6 +76,39 @@ if (productOptions && productQuoteLink) {
   updateProductQuoteLink();
 }
 
+document.querySelectorAll("[data-product-zoom]").forEach((frame) => {
+  const image = frame.querySelector("[data-gallery-main]");
+  if (!image) return;
+
+  frame.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse") return;
+    const bounds = frame.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+    image.style.transformOrigin = `${x}% ${y}%`;
+    frame.classList.add("is-zoomed");
+  });
+  frame.addEventListener("pointerleave", () => {
+    frame.classList.remove("is-zoomed");
+    image.style.transformOrigin = "center center";
+  });
+});
+
+document.querySelectorAll("[data-gallery-thumbnail]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const gallery = button.closest(".product-gallery");
+    const image = gallery?.querySelector("[data-gallery-main]");
+    if (!image) return;
+    image.src = button.dataset.imageSrc;
+    image.alt = button.dataset.imageAlt;
+    gallery.querySelectorAll("[data-gallery-thumbnail]").forEach((item) => {
+      const active = item === button;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+  });
+});
+
 const query = new URLSearchParams(window.location.search);
 const productContext = query.get("product")?.slice(0, 100);
 const optionContext = query.get("options")?.slice(0, 500);

@@ -1374,17 +1374,25 @@ details p {
   min-width: 0;
 }
 
-.product-photo { position: relative; min-width: 0; margin: 0; overflow: hidden; background: #f3eee8; }
+.product-photo { position: relative; min-width: 0; margin: 0; overflow: hidden; background: #f3eee8; cursor: zoom-in; }
 .product-photo-main { aspect-ratio: .92; }
-.product-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 50%; transform: scale(1.22); }
+.product-photo > img { width: 100%; height: 100%; object-fit: cover; object-position: center 50%; transform: scale(1.22); transform-origin: center; transition: transform .3s ease; will-change: transform; }
+.product-photo.is-zoomed > img { transform: scale(2.5); cursor: zoom-out; }
 .product-photo figcaption { position: absolute; right: 1rem; bottom: 1rem; left: 1rem; display: flex; justify-content: space-between; color: #39322c; font-size: .64rem; font-weight: 600; letter-spacing: .13em; }
 .gallery-caption { margin: .8rem 0 0; color: #746d65; font-size: .75rem; letter-spacing: .035em; }
+.product-thumbnails { display: flex; gap: .55rem; margin-top: .6rem; overflow-x: auto; }
+.product-thumbnail { width: clamp(4.5rem, 8vw, 6.25rem); flex: 0 0 auto; overflow: hidden; padding: 0; aspect-ratio: .82; border: 1px solid #d9d5d0; background: #f3eee8; cursor: pointer; }
+.product-thumbnail.is-active { border: 2px solid #29241f; }
+.product-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
 
 .product-summary { position: sticky; top: 7rem; padding: .7rem 0 0; background: transparent; }
 .product-eyebrow { margin: 0 0 .8rem; color: #74695e; font-size: .64rem; font-weight: 500; letter-spacing: .13em; }
 .eyebrow-dot { display: inline-block; width: .5rem; height: .5rem; margin-right: .45rem; border-radius: 50%; background: var(--plum); vertical-align: 1px; }
 .product-summary h1 { max-width: 18ch; margin: 0; color: #29241f; font: 400 clamp(2.2rem, 3vw, 3.1rem)/1.03 var(--display); letter-spacing: -.025em; }
 .product-intro { max-width: 34rem; margin: .75rem 0 1rem; color: #6e675f; font-size: .88rem; line-height: 1.65; }
+.product-features { display: grid; gap: .45rem; margin: 0 0 1rem; padding: 0; list-style: none; color: #514943; font-size: .78rem; }
+.product-features li { position: relative; padding-left: 1.2rem; }
+.product-features li::before { position: absolute; left: 0; color: var(--rose); content: "✓"; font-weight: 600; }
 .product-price-note { margin: 0 0 .8rem; padding: .65rem 0; border-top: 1px solid #d9d5d0; border-bottom: 1px solid #d9d5d0; }
 .product-price-note p { margin: 0; color: #332e29; font: 400 1.25rem/1.2 var(--display); }
 .product-price-note span { display: block; margin-top: .25rem; color: #817970; font-size: .68rem; }
@@ -1445,6 +1453,10 @@ details p {
 .product-information-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 8vw, 8rem); }
 .product-information h2 { margin: 0; font: 400 clamp(2.4rem, 4vw, 3.8rem)/1 var(--display); }
 .product-information-grid > div:first-child > p:last-child { max-width: 22rem; margin: 1rem 0 0; color: #766d66; font-size: .85rem; line-height: 1.7; }
+.product-specs { margin: 0; border-top: 1px solid #d9d5d0; }
+.product-specs > div { display: grid; grid-template-columns: minmax(9rem, .85fr) minmax(0, 1.15fr); gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid #d9d5d0; }
+.product-specs dt { color: #29241f; font-size: .86rem; font-weight: 500; }
+.product-specs dd { margin: 0; color: #625d58; font-size: .86rem; line-height: 1.55; }
 .product-accordions details { padding: 1.2rem 0; border-bottom: 1px solid #e8e1db; }
 .product-accordions details:first-child { border-top: 1px solid #e8e1db; }
 .product-accordions summary { color: #29241f; font-size: .87rem; }
@@ -1462,10 +1474,12 @@ details p {
   .product-editorial .crumbs { margin-bottom: .9rem; font-size: .7rem; }
   .product-top { gap: 1.3rem !important; }
   .product-photo-main { aspect-ratio: .9; }
-  .product-photo img { transform: scale(1.18); }
+  .product-photo > img { transform: scale(1.18); }
+  .product-photo.is-zoomed > img { transform: scale(1.8); }
   .product-summary { padding: 0; }
   .product-summary h1 { max-width: 16ch; font-size: clamp(2.25rem, 10vw, 3rem); }
   .product-choice-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .product-specs > div { grid-template-columns: minmax(7rem, .8fr) minmax(0, 1.2fr); gap: .8rem; }
   .product-story, .product-process, .product-information, .product-related { padding: 3.5rem 0; }
   .product-story-grid, .product-process-heading { grid-template-columns: 1fr; display: grid; gap: 1.2rem; }
   .product-steps { grid-template-columns: 1fr; margin-top: 2rem; }
