@@ -1401,7 +1401,7 @@ details p {
 .product-choice-select select { width: 100%; min-height: 2.85rem; padding: .5rem .75rem; border: 1px solid #c9c6c2; border-radius: 0; background: #fff; color: #332e29; font: 400 .75rem/1.4 var(--body); }
 .product-choice-select select:focus-visible, .product-finishing-card input:focus-visible { outline: 2px solid #9b4dca; outline-offset: 2px; }
 .product-more-options { margin: .4rem 0 .8rem; border-top: 1px solid #d9d5d0; border-bottom: 1px solid #d9d5d0; }
-.product-more-options > summary { padding: .8rem 0; color: #29241f; font-size: .8rem; }
+.product-more-options-title { margin: 0; padding: .8rem 0; color: #29241f; font: 400 1rem/1.2 var(--display); }
 .product-more-options-content { padding: 0 0 .6rem; }
 .product-finishing-card { display: flex; align-items: center; gap: .7rem; min-height: 4.2rem; padding: .7rem; border: 1px solid #ddd8d3; background: #faf8f6; cursor: pointer; }
 .product-finishing-card input { width: 1rem; height: 1rem; accent-color: #54345f; }
