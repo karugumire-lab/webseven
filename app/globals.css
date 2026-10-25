@@ -8,6 +8,8 @@
    ============================================================ */
 
 :root {
+  --site-content-width: 1440px;
+  --site-content-gutter: clamp(16px, 2.35vw, 32px);
   --ink:   #2d1f3d;
   --plum:  #9b4dca;
   --rose:  #ff3d7f;
@@ -90,7 +92,7 @@ a { color: inherit; }
    ============================================================ */
 
 .wrap {
-  width: min(1200px, calc(100% - 48px));
+  width: min(var(--site-content-width), calc(100% - 2 * var(--site-content-gutter)));
   margin-inline: auto;
 }
 
@@ -1359,7 +1361,6 @@ details p {
   color: #29241f;
 }
 
-.product-editorial .wrap { width: min(1540px, calc(100% - 80px)); }
 .product-editorial .crumbs { margin-bottom: 1.25rem; color: #77716b; font-size: .82rem; text-decoration: none; }
 .product-editorial .crumbs span { margin: 0 .55rem; color: #aaa39b; }
 
@@ -1450,7 +1451,6 @@ details p {
 .product-accordions details p { max-width: 40rem; color: #766d66; font-size: .83rem; line-height: 1.75; }
 
 @media (max-width: 800px) {
-  .product-editorial .wrap { width: min(100% - 40px, 680px); }
   .product-editorial .product-top { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .product-summary { position: static; max-width: none; padding-top: 0; }
   .product-story-grid { gap: 2rem; }
@@ -1459,7 +1459,6 @@ details p {
 
 @media (max-width: 600px) {
   .product-editorial { padding: 1rem 0 3.5rem; }
-  .product-editorial .wrap { width: calc(100% - 32px); }
   .product-editorial .crumbs { margin-bottom: .9rem; font-size: .7rem; }
   .product-top { gap: 1.3rem !important; }
   .product-photo-main { aspect-ratio: .9; }
@@ -1991,7 +1990,6 @@ footer {
 }
 .site-announcement a { margin-left: .45rem; color: inherit; text-underline-offset: 3px; }
 .site-header { position: sticky; z-index: 20; top: 0; background: #fff; border-bottom: 1px solid #eee9e5; }
-.site-header .wrap { width: min(1440px, calc(100% - 64px)); }
 .site-header .nav { min-height: 76px; height: auto; max-width: none; gap: 2rem; }
 .site-header .logo { display: inline-flex; align-items: center; gap: .55rem; color: #29241f; font: 600 1.12rem/1 var(--body); letter-spacing: -.065em; white-space: nowrap; }
 .logo-mark { display: grid; width: 1.85rem; height: 1.85rem; place-items: center; border: 1px solid #29241f; border-radius: 50%; font: 400 1.1rem/1 var(--display); letter-spacing: 0; }
@@ -2081,13 +2079,11 @@ footer {
 .catalog-cta .btn { display: inline-flex; align-items: center; gap: 2rem; background: #29241f; border-color: #29241f; }
 
 @media (max-width: 960px) {
-  .site-header .wrap { width: min(100% - 40px, 1440px); }
   .site-header .nav { gap: 1rem; }
   .site-header .menu { gap: 1rem; }
   .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1rem; }
 }
 @media (max-width: 700px) {
-  .site-header .wrap { width: calc(100% - 32px); }
   .site-header .nav { min-height: 66px; }
   .site-header .menu-btn { display: block; margin-left: auto; padding: .5rem .65rem; font-size: .72rem; }
   .site-header .menu { top: 100%; right: -16px; left: -16px; gap: 0; padding: .6rem 1rem 1rem; background: #fff; border-top: 1px solid #eee9e5; box-shadow: 0 14px 20px #29241f12; }
