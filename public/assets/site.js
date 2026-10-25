@@ -22,6 +22,32 @@ if (menuBtn && menu) {
   });
 }
 
+// Product collection category filters
+const catalog = document.getElementById("catalog-grid");
+
+if (catalog) {
+  const cards = [...catalog.querySelectorAll(".catalog-card")];
+  const filters = [...document.querySelectorAll("[data-category-filter]")];
+  const count = document.getElementById("catalog-result-count");
+  const status = document.getElementById("catalog-filter-status");
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const category = filter.dataset.categoryFilter;
+      let visible = 0;
+
+      filters.forEach((item) => item.setAttribute("aria-pressed", String(item === filter)));
+      cards.forEach((card) => {
+        card.hidden = category !== "all" && card.dataset.category !== category;
+        if (!card.hidden) visible += 1;
+      });
+
+      if (count) count.textContent = String(visible);
+      if (status) status.textContent = category === "all" ? "Showing all collections" : `Showing ${filter.textContent.trim().replace(/\s+\d+$/, "")}`;
+    });
+  });
+}
+
 // Quote popup
 const dlg = document.getElementById("enquiry");
 
