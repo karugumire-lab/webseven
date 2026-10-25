@@ -2033,7 +2033,7 @@ footer {
 .catalog-category-heading .catalog-eyebrow { margin-bottom: .55rem; }
 .catalog-category-heading h2 { margin: 0; font: 400 clamp(2.2rem, 4.2vw, 3.7rem)/1 var(--display); }
 .catalog-category-heading > p { max-width: 23rem; margin: 0 0 .25rem; color: #766d66; font-size: .78rem; line-height: 1.7; }
-.catalog-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
 .catalog-card { color: #29241f; text-decoration: none; }
 .catalog-image { position: relative; overflow: hidden; aspect-ratio: .83; background: #f4efea; }
 .catalog-image img { width: 100%; height: 100%; object-fit: cover; }
