@@ -8,14 +8,13 @@
      Every piece of text written inside "quotes" is an instruction.
      Replace the whole thing (quotes included) with your own info.
      Example:  "Your company name"  ->  Luna Nail Co.
-     Colors are in styles.css. Your contact email is in script.js.
+     Global styles are in app/globals.css. Site behavior is initialized in app/site-page.jsx.
      ============================================================ -->
-<title>Blog | "Your company name"</title>
-<meta name="description" content="Write a one-sentence description of this page for Google">
+<title>Journal | Sevenail</title>
+<meta name="description" content="Notes on press-on nail design, collection development and product presentation from Sevenail.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
@@ -44,13 +43,16 @@
     <a class="btn" href="contact.html" data-enquire>Get a quote</a>
   </div>
 </header>
-<main>
-<section class="page-hero"><div class="wrap">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="about.html">About us</a> / Blog</nav>
-  <h1>"Blog headline, e.g. News, trends, and tips"</h1><p class="lead">"One sentence about what you write about."</p>
+<main class="journal-page">
+<section class="journal-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true"> / </span><span>Journal</span></nav>
+  <p class="eyebrow">NOTES FROM THE STUDIO</p>
+  <h1>Ideas for what comes next.</h1>
+  <p class="lead">A closer look at the design choices and product details behind a press-on nail collection.</p>
 </div></section>
-<section><div class="wrap"><div class="grid3"><a class="card square" href="blog-post.html"><div class="img">"Blog post 1 cover photo"</div><p class="meta">"Date, e.g. September 2026"</p><h3>"Blog post 1 title"</h3><p>"One-sentence summary of the post."</p></a><a class="card square" href="blog-post.html"><div class="img">"Blog post 2 cover photo"</div><p class="meta">"Date, e.g. September 2026"</p><h3>"Blog post 2 title"</h3><p>"One-sentence summary of the post."</p></a><a class="card square" href="blog-post.html"><div class="img">"Blog post 3 cover photo"</div><p class="meta">"Date, e.g. September 2026"</p><h3>"Blog post 3 title"</h3><p>"One-sentence summary of the post."</p></a><a class="card square" href="blog-post.html"><div class="img">"Blog post 4 cover photo"</div><p class="meta">"Date, e.g. September 2026"</p><h3>"Blog post 4 title"</h3><p>"One-sentence summary of the post."</p></a><a class="card square" href="blog-post.html"><div class="img">"Blog post 5 cover photo"</div><p class="meta">"Date, e.g. September 2026"</p><h3>"Blog post 5 title"</h3><p>"One-sentence summary of the post."</p></a><a class="card square" href="blog-post.html"><div class="img">"Blog post 6 cover photo"</div><p class="meta">"Date, e.g. September 2026"</p><h3>"Blog post 6 title"</h3><p>"One-sentence summary of the post."</p></a></div>
-<!-- "To add a post: copy blog-post.html, rename it, write your post, then copy one of the cards above and change its link" -->
+<section class="journal-feature-section"><div class="wrap journal-feature">
+  <a class="journal-image" href="blog-post.html" aria-label="Read: A better brief for your next press-on nail collection"><img src="/assets/products/hnail-simple-design/PFB0416202605.jpg" alt="Blue embellished press-on nail design"></a>
+  <div class="journal-feature-copy"><p class="eyebrow">PRODUCT DEVELOPMENT · FIELD NOTE 01</p><h2><a href="blog-post.html">A better brief for your next press-on nail collection.</a></h2><p>Shape, finish, set contents and packaging all influence the final product. A clear starting brief helps bring those choices into focus.</p><a class="text-link" href="blog-post.html">Read the field note <span aria-hidden="true">↗</span></a></div>
 </div></section>
 
 </main>
@@ -109,6 +111,5 @@
     </div>
   </form>
 </dialog>
-<script src="script.js"></script>
 </body>
 </html>

@@ -8,14 +8,13 @@
      Every piece of text written inside "quotes" is an instruction.
      Replace the whole thing (quotes included) with your own info.
      Example:  "Your company name"  ->  Luna Nail Co.
-     Colors are in styles.css. Your contact email is in script.js.
+     Global styles are in app/globals.css. Site behavior is initialized in app/site-page.jsx.
      ============================================================ -->
-<title>FAQ | "Your company name"</title>
-<meta name="description" content="Write a one-sentence description of this page for Google">
+<title>Frequently Asked Questions | Sevenail</title>
+<meta name="description" content="Answers to common questions about Sevenail press-on nail products, customization and manufacturing enquiries.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -45,18 +44,30 @@
     <a class="btn" href="contact.html" data-enquire>Get a quote</a>
   </div>
 </header>
-<main>
+<main class="faq-page">
 <section class="page-hero"><div class="wrap">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="about.html">About us</a> / FAQ</nav>
-  <h1>Frequently asked questions</h1><p class="lead">"One sentence, e.g. Everything buyers ask us about ordering, pricing, and shipping."</p>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true"> / </span><span>FAQ</span></nav>
+  <p class="eyebrow">A FEW THINGS TO KNOW</p>
+  <h1>Questions, answered.</h1><p class="lead">A guide to starting a press-on nail project with Sevenail.</p>
 </div></section>
 <section><div class="wrap faq-grid">
-  <div><h2>Still have a question?</h2><p class="lead">Send us a message and we'll get back to you.</p><a class="btn" href="contact.html">Contact us</a></div>
-  <div>
-    <div class="faq-group"><h2 style="font-size:1.8rem">"Group 1, e.g. Ordering and MOQ"</h2><details><summary>"Question 1"</summary><p>"Your answer."</p></details><details><summary>"Question 2"</summary><p>"Your answer."</p></details><details><summary>"Question 3"</summary><p>"Your answer."</p></details><details><summary>"Question 4"</summary><p>"Your answer."</p></details></div>
-    <div class="faq-group"><h2 style="font-size:1.8rem">"Group 2, e.g. Pricing and payment"</h2><details><summary>"Question 1"</summary><p>"Your answer."</p></details><details><summary>"Question 2"</summary><p>"Your answer."</p></details><details><summary>"Question 3"</summary><p>"Your answer."</p></details></div>
-    <div class="faq-group"><h2 style="font-size:1.8rem">"Group 3, e.g. Quality and certifications"</h2><details><summary>"Question 1"</summary><p>"Your answer."</p></details><details><summary>"Question 2"</summary><p>"Your answer."</p></details><details><summary>"Question 3"</summary><p>"Your answer."</p></details></div>
-    <div class="faq-group"><h2 style="font-size:1.8rem">"Group 4, e.g. Shipping"</h2><details><summary>"Question 1"</summary><p>"Your answer."</p></details><details><summary>"Question 2"</summary><p>"Your answer."</p></details><details><summary>"Question 3"</summary><p>"Your answer."</p></details></div>
+  <aside class="faq-intro"><p class="eyebrow">NEED A HAND?</p><h2>Tell us what you’re working on.</h2><p>Share your product direction and the details you already know. We’ll help clarify the next steps.</p><a class="btn" href="contact.html" data-enquire>Ask us directly <span aria-hidden="true">↗</span></a></aside>
+  <div class="faq-answers">
+    <div class="faq-group"><p class="eyebrow">THE PRODUCT</p><h2>Design &amp; specifications</h2>
+      <details><summary>Can I customize a design for my brand?</summary><p>Yes. Share your references and the details you want to explore, such as shape, length, color, finish and decoration. We’ll discuss what can be developed for your project.</p></details>
+      <details><summary>Can I start from an existing style?</summary><p>Yes. You can ask about a style in our collections and discuss branding or presentation options for it.</p></details>
+      <details><summary>What can I include in a set?</summary><p>Set contents and application components are confirmed as part of the product specification. Include your preferences in the enquiry.</p></details>
+    </div>
+    <div class="faq-group"><p class="eyebrow">YOUR PROJECT</p><h2>Orders &amp; quotations</h2>
+      <details><summary>What is the minimum order quantity?</summary><p>Minimum quantities depend on the style and specification. Tell us what you are considering and we’ll confirm the applicable minimum in your quotation.</p></details>
+      <details><summary>How is pricing determined?</summary><p>Pricing depends on the product details, materials, set contents, packaging and order quantity. We provide a project-specific quotation after reviewing your brief.</p></details>
+      <details><summary>How long do sampling and production take?</summary><p>Timing depends on the product scope and current production plan. We’ll confirm sample and production timing when we review your requirements.</p></details>
+    </div>
+    <div class="faq-group"><p class="eyebrow">PRESENTATION &amp; DELIVERY</p><h2>Packaging &amp; practical details</h2>
+      <details><summary>Can you help with custom packaging?</summary><p>Packaging and product presentation can be discussed alongside your design. Include your target format, artwork direction and retail needs in your brief.</p></details>
+      <details><summary>Which markets do you work with?</summary><p>Sevenail works with customers in global markets. Share your destination and any market-specific requirements so we can discuss the project scope.</p></details>
+      <details><summary>Can you share audit or product documentation?</summary><p>Tell us which requirements matter to your team. We can discuss the relevant documentation and audit information for the project.</p></details>
+    </div>
   </div>
 </div></section>
 
@@ -140,6 +151,5 @@
     </div>
   </form>
 </dialog>
-<script src="script.js"></script>
 </body>
 </html>

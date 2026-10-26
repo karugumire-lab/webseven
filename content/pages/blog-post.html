@@ -8,14 +8,13 @@
      Every piece of text written inside "quotes" is an instruction.
      Replace the whole thing (quotes included) with your own info.
      Example:  "Your company name"  ->  Luna Nail Co.
-     Colors are in styles.css. Your contact email is in script.js.
+     Global styles are in app/globals.css. Site behavior is initialized in app/site-page.jsx.
      ============================================================ -->
-<title>"Blog post title" | "Your company name"</title>
-<meta name="description" content="Write a one-sentence description of this page for Google">
+<title>A Better Brief for Your Press-on Nail Collection | Sevenail Journal</title>
+<meta name="description" content="A practical starting point for briefing shape, finish, set contents and packaging for a press-on nail collection.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
@@ -46,20 +45,26 @@
 </header>
 <main>
 
-<section><div class="wrap article">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="blog.html">Blog</a> / "Post title"</nav>
-  <p class="meta">"Date, e.g. September 2026"</p>
-  <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">"Blog post title"</h1>
-  <p class="lead">"A one or two sentence introduction."</p>
-  <div class="photo">"Cover photo for this post"</div>
-  <p>"First paragraph of your post."</p>
-  <h2>"A subheading"</h2>
-  <p>"More of your post."</p>
-  <p>"More of your post."</p>
-  <h2>"Another subheading"</h2>
-  <p>"More of your post."</p>
-  <div class="actions"><a class="btn ghost" href="blog.html">Back to the blog</a><a class="btn" href="contact.html" data-enquire>Get a quote</a></div>
-</div></section>
+<section class="journal-article-section"><article class="wrap article">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true"> / </span><a href="blog.html">Journal</a><span aria-hidden="true"> / </span><span>Product development</span></nav>
+  <p class="eyebrow">PRODUCT DEVELOPMENT · FIELD NOTE 01</p>
+  <h1>A better brief for your next press-on nail collection.</h1>
+  <p class="lead">A considered brief gives a product team a useful place to begin. Start with the customer and the idea, then capture the decisions that shape the set.</p>
+  <figure class="article-image"><img src="/assets/products/hnail-simple-design/PFB0416202605.jpg" alt="Blue embellished press-on nail design"><figcaption>Design direction can start with a reference, a color story or a single detail.</figcaption></figure>
+  <div class="article-body">
+    <p>A collection begins with a point of view: who it is for, where it will be sold and what makes it feel distinct. You do not need every production detail resolved before starting a conversation. A few clear references and priorities can make the early discussion more productive.</p>
+    <h2>Start with the look and the wearer</h2>
+    <p>Describe the intended customer and the occasion for the set. Reference shapes, lengths, colors or finishes you like. If you have a moodboard, existing product or sketch, include it and note which details matter most.</p>
+    <p>Separate essentials from open questions. For example, a particular silhouette may be fixed while the finish or accent detail is still being explored.</p>
+    <h2>Outline the set and its presentation</h2>
+    <p>Note your preferred set contents, application approach and packaging format. If your brand has visual guidelines or retail requirements, share those early so the product and presentation can be discussed together.</p>
+    <h2>Include the practical context</h2>
+    <p>Estimated quantity, target market and desired timing help frame the conversation. Minimum quantities, sample timing, production timing and delivery details depend on the agreed specification, so these can be confirmed as the project takes shape.</p>
+    <p>A useful first brief does not need to be long. It should make your direction clear and show which decisions are already made.</p>
+    <div class="brief-checklist"><p class="eyebrow">A SIMPLE STARTING CHECKLIST</p><ul><li>Customer and collection direction</li><li>Shape, length, color and finish references</li><li>Decoration or signature details</li><li>Set contents and packaging needs</li><li>Estimated quantity, destination and timing</li></ul></div>
+  </div>
+  <div class="actions"><a class="btn ghost" href="blog.html">Back to the journal</a><a class="btn" href="contact.html" data-enquire>Discuss your project <span aria-hidden="true">↗</span></a></div>
+</article></section>
 
 </main>
 <footer>
@@ -117,6 +122,5 @@
     </div>
   </form>
 </dialog>
-<script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,433 @@
+
+/* =========================================================
+   SHARED SCRIPT FOR EVERY PAGE
+   ========================================================= */
+
+const CONTACT_EMAIL = "aaron@seungilchem.com";
+
+// Update the copyright year
+document.querySelectorAll(".yr").forEach((el) => {
+  el.textContent = new Date().getFullYear();
+});
+
+// Mobile menu
+const menuBtn = document.querySelector(".menu-btn");
+const menu = document.getElementById("menu");
+
+if (menuBtn && menu) {
+  menuBtn.addEventListener("click", () => {
+    const open = menu.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.textContent = open ? "Close" : "Menu";
+  });
+}
+
+// Product collection category filters
+const catalog = document.getElementById("catalog-grid");
+
+if (catalog) {
+  const cards = [...catalog.querySelectorAll(".catalog-card")];
+  const filters = [...document.querySelectorAll("[data-category-filter]")];
+  const count = document.getElementById("catalog-result-count");
+  const status = document.getElementById("catalog-filter-status");
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const category = filter.dataset.categoryFilter;
+      let visible = 0;
+
+      filters.forEach((item) => item.setAttribute("aria-pressed", String(item === filter)));
+      cards.forEach((card) => {
+        card.hidden = category !== "all" && card.dataset.category !== category;
+        if (!card.hidden) visible += 1;
+      });
+
+      if (count) count.textContent = String(visible);
+      if (status) status.textContent = category === "all" ? "Showing all collections" : `Showing ${filter.textContent.trim().replace(/\s+\d+$/, "")}`;
+    });
+  });
+}
+
+// Keep product context when a catalogue card opens the contact page.
+document.querySelectorAll("[data-enquire-product]").forEach((link) => {
+  const destination = new URL(link.href, window.location.href);
+  if (destination.origin !== window.location.origin) return;
+  destination.searchParams.set("product", link.dataset.enquireProduct.slice(0, 100));
+  link.href = `${destination.pathname}${destination.search}${destination.hash}`;
+});
+
+const productOptions = document.querySelector("[data-product-options]");
+const productQuoteLink = document.querySelector("[data-product-quote-link]");
+if (productOptions && productQuoteLink) {
+  const updateProductQuoteLink = () => {
+    const preferences = [...productOptions.querySelectorAll("[data-option-label]")]
+      .map((group) => {
+        const selected = group.querySelector('input:checked, select');
+        const value = selected?.value?.trim();
+        return value ? `${group.dataset.optionLabel}: ${value}` : "";
+      })
+      .filter(Boolean);
+    const destination = new URL(productQuoteLink.href, window.location.href);
+    if (preferences.length) destination.searchParams.set("options", preferences.join("; "));
+    else destination.searchParams.delete("options");
+    productQuoteLink.href = `${destination.pathname}${destination.search}${destination.hash}`;
+  };
+  productOptions.addEventListener("change", updateProductQuoteLink);
+  updateProductQuoteLink();
+}
+
+document.querySelectorAll("[data-product-zoom]").forEach((frame) => {
+  const image = frame.querySelector("[data-gallery-main]");
+  if (!image) return;
+
+  frame.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse") return;
+    const bounds = frame.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+    image.style.transformOrigin = `${x}% ${y}%`;
+    frame.classList.add("is-zoomed");
+  });
+  frame.addEventListener("pointerleave", () => {
+    frame.classList.remove("is-zoomed");
+    image.style.transformOrigin = "center center";
+  });
+});
+
+document.querySelectorAll("[data-gallery-thumbnail]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const gallery = button.closest(".product-gallery");
+    const image = gallery?.querySelector("[data-gallery-main]");
+    if (!image) return;
+    image.src = button.dataset.imageSrc;
+    image.alt = button.dataset.imageAlt;
+    gallery.querySelectorAll("[data-gallery-thumbnail]").forEach((item) => {
+      const active = item === button;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+  });
+});
+
+const query = new URLSearchParams(window.location.search);
+const productContext = query.get("product")?.slice(0, 100);
+const optionContext = query.get("options")?.slice(0, 500);
+const contactMessage = document.getElementById("c-msg");
+if ((productContext || optionContext) && contactMessage) {
+  contactMessage.value = [
+    productContext ? `I’m interested in ${productContext}.` : "",
+    optionContext ? `Preferences to discuss: ${optionContext}.` : "",
+    ""
+  ].filter(Boolean).join("\n\n");
+}
+
+// Enquiry form
+document.querySelectorAll("form.enq").forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const err = form.querySelector(".error");
+    const val = (name) =>
+      form.elements[name] ? form.elements[name].value.trim() : "";
+
+    const missing = [
+      ...form.querySelectorAll("[required]")
+    ].filter((field) => !field.value.trim());
+
+    if (missing.length) {
+      if (err) {
+        err.textContent =
+          "Please fill in all required fields.";
+      }
+      missing[0].focus();
+      return;
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(val("email"))) {
+      if (err) err.textContent = "Enter a valid email address.";
+      if (form.elements.email) form.elements.email.focus();
+      return;
+    }
+
+    const fields = [
+      ["Name", "name"],
+      ["Email", "email"],
+      ["Company", "company"],
+      ["Quantity", "quantity"],
+      ["Needed", "needed"]
+    ];
+
+    const details = fields
+      .map(([label, key]) =>
+        val(key) ? `${label}: ${val(key)}` : ""
+      )
+      .filter(Boolean)
+      .join("\n");
+
+    const body = `${details}\n\n${val("message")}`;
+    const subject = "Quote request from " + val("company");
+
+    window.location.href =
+      `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
+
+  });
+});
+
+// =========================================================
+// CERTIFICATE LOGO SLIDER
+// Moves the first logo to the end for continuous scrolling.
+// Uses the existing .cert-slider and .cert-track HTML.
+// =========================================================
+
+(function () {
+  const slider = document.querySelector(".cert-slider");
+  if (!slider) return;
+
+  const track = slider.querySelector(".cert-track");
+  if (!track || track.children.length < 2) return;
+
+  // Respect the visitor's reduced-motion preference.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  const SPEED = 0.8; // Pixels per animation frame
+  let position = 0;
+  let paused = false;
+  let animationId;
+
+  function getGap() {
+    return parseFloat(window.getComputedStyle(track).columnGap) ||
+           parseFloat(window.getComputedStyle(track).gap) || 24;
+  }
+
+  function animate() {
+    if (!paused) {
+      const first = track.firstElementChild;
+
+      if (first) {
+        const distance = first.getBoundingClientRect().width + getGap();
+
+        position += SPEED;
+
+        if (position >= distance) {
+          position -= distance;
+          track.appendChild(first);
+        }
+
+        track.style.transform = `translate3d(${-position}px, 0, 0)`;
+      }
+    }
+
+    animationId = window.requestAnimationFrame(animate);
+  }
+
+  slider.addEventListener("mouseenter", () => {
+    paused = true;
+  });
+
+  slider.addEventListener("mouseleave", () => {
+    paused = false;
+  });
+
+  slider.addEventListener("focusin", () => {
+    paused = true;
+  });
+
+  slider.addEventListener("focusout", () => {
+    paused = false;
+  });
+
+  // Start only after the browser has loaded the page.
+  animationId = window.requestAnimationFrame(animate);
+
+  // Stop the animation if the page is hidden.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      window.cancelAnimationFrame(animationId);
+    } else {
+      animationId = window.requestAnimationFrame(animate);
+    }
+  });
+})();
+
+// =========================================================
+// OTHER SLIDESHOW (.dw-*)
+// Used on pages containing the matching slideshow elements.
+// =========================================================
+
+(function () {
+  const slides = document.querySelectorAll(".dw-slide");
+  const dots = document.querySelectorAll(".dw-dot");
+  const container = document.querySelector(".dw-slider");
+  const prev = document.querySelector(".dw-prev");
+  const next = document.querySelector(".dw-next");
+
+  if (!slides.length || !container) return;
+
+  let current = 0;
+  let timer = null;
+
+  function goTo(index) {
+    slides[current].classList.remove("active");
+    if (dots[current]) dots[current].classList.remove("active");
+
+    current = (index + slides.length) % slides.length;
+
+    slides[current].classList.add("active");
+    if (dots[current]) dots[current].classList.add("active");
+  }
+
+  function stopTimer() {
+    if (timer !== null) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function startTimer() {
+    stopTimer();
+    timer = setInterval(() => goTo(current + 1), 3000);
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = Number.parseInt(dot.dataset.index, 10);
+      if (Number.isNaN(index)) return;
+      goTo(index);
+      startTimer();
+    });
+  });
+
+  if (prev) {
+    prev.addEventListener("click", () => {
+      goTo(current - 1);
+      startTimer();
+    });
+  }
+
+  if (next) {
+    next.addEventListener("click", () => {
+      goTo(current + 1);
+      startTimer();
+    });
+  }
+
+  container.addEventListener("mouseenter", stopTimer);
+  container.addEventListener("mouseleave", startTimer);
+
+  startTimer();
+})();
+// =========================================================
+// CATEGORY NAV — smooth scroll + active highlight
+// =========================================================
+(function () {
+  document.querySelectorAll('.cat-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const sections = document.querySelectorAll('#cat-1,#cat-2,#cat-3,#cat-4,#cat-5');
+  const links = document.querySelectorAll('.cat-link');
+
+    if (sections.length && links.length) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => {
+            l.classList.toggle('active',
+              l.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  }
+})();
+
+// Editorial motion: reveal in-view content without hiding it when JS is absent.
+(function () {
+  const root = document.documentElement;
+
+  const stagger = (selector, limit = 0.36) => {
+    document.querySelectorAll(selector).forEach((group) => {
+      [...group.children].forEach((item, index) => {
+        item.classList.add("motion-item");
+        item.style.setProperty("--motion-delay", `${Math.min(index * 0.08, limit)}s`);
+      });
+    });
+  };
+
+  const hero = document.querySelector(".home-hero, .page-hero, .solutions-hero, .contact-intro, .journal-hero, .catalog-hero");
+  if (hero) {
+    hero.classList.add("motion-hero");
+    hero.querySelectorAll(".eyebrow, .since, h1, .lead, .hero-buttons, .btn, .text-link").forEach((item, index) => {
+      item.classList.add("motion-enter");
+      item.style.setProperty("--motion-delay", `${0.14 + index * 0.11}s`);
+    });
+    hero.querySelectorAll(".hero-video, .arch, .solution-image, .journal-image").forEach((item) => item.classList.add("motion-media"));
+  }
+
+  const productTop = document.querySelector(".product-top");
+  if (productTop) {
+    productTop.querySelectorAll(".product-gallery, .product-summary").forEach((item, index) => {
+      item.classList.add("motion-enter");
+      item.style.setProperty("--motion-delay", `${index * 0.14}s`);
+    });
+    productTop.querySelectorAll(".product-eyebrow, h1, .product-intro, .product-features, .product-price-note, .product-options, .product-enquiry").forEach((item, index) => {
+      item.classList.add("motion-enter");
+      item.style.setProperty("--motion-delay", `${0.16 + index * 0.07}s`);
+    });
+  }
+
+  document.querySelectorAll(".site-announcement, .site-header").forEach((item, index) => {
+    item.classList.add("motion-enter");
+    item.style.setProperty("--motion-delay", `${index * 0.06}s`);
+  });
+
+  document.querySelectorAll("main > section:not(:first-child), .home-facts, .service-index, .solution-services, .journal-article-section, .faq-grid, .contact-layout, .about-story, .about-capabilities, .about-credentials, .product-story, .product-process, .product-information, .product-related, .site-footer .footer-callout, .site-footer .foot").forEach((item) => item.classList.add("motion-item"));
+  stagger(".home-product-grid, .catalog-grid, .product-related-grid, .home-process-grid, .product-steps, .solution-services, .faq-answers, .site-footer .foot");
+
+  root.classList.add("motion-enhanced");
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".motion-enter, .motion-media").forEach((item) => item.classList.add("is-in"));
+  });
+
+  const items = [...document.querySelectorAll(".motion-item")];
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    items.forEach((item) => observer.observe(item));
+  } else {
+    const revealVisible = () => {
+      items.forEach((item) => {
+        const bounds = item.getBoundingClientRect();
+        if (bounds.top < window.innerHeight * 0.92 && bounds.bottom > 0) {
+          item.classList.add("is-in");
+        }
+      });
+    };
+    let scheduled = false;
+    const scheduleReveal = () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        scheduled = false;
+        revealVisible();
+      });
+    };
+    window.addEventListener("scroll", scheduleReveal, { passive: true });
+    window.addEventListener("resize", scheduleReveal, { passive: true });
+    scheduleReveal();
+  }
+})();

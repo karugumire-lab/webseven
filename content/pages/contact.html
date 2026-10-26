@@ -8,14 +8,13 @@
      Every piece of text written inside "quotes" is an instruction.
      Replace the whole thing (quotes included) with your own info.
      Example:  "Your company name"  ->  Luna Nail Co.
-     Colors are in styles.css. Your contact email is in script.js.
+     Global styles are in app/globals.css. Site behavior is initialized in app/site-page.jsx.
      ============================================================ -->
-<title>Services | Sevenail</title>
-<meta name=Sevenail content=OEM/ODM Press on nails>
+<title>Contact | Sevenail </title>
+<meta name="description" content= contact us for oem press on nail order>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -40,110 +39,56 @@
           <li><a href="about.html">Our story</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
     </ul>
     <a class="btn" href="contact.html" data-enquire>Get a quote</a>
   </div>
 </header>
 <main>
-<section class="page-hero"><div class="wrap">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> <!-- check this and see if you can have it ready--> </nav>
-  <h1>Tell Us What You need, and We Promise to Deliver</h1><p class="lead"> Worry about the rest. We take care of production.</p>
-</div></section>
-<section><div class="wrap"><div class="two" id="custom-design">
-  <div class="photo slideshow">
-    <img class="slide active" src="Product/HNail-simple design/PFB0416202605.jpg" alt="Custom design 1">
-    <img class="slide" src="Product/HNail-simple design/PFB0420202604.jpg" alt="Custom design 2">
-    <img class="slide" src="Product/HNail-simple design/PFB0507202603.jpg" alt="Custom design 3">
-  </div>
-  <div>
-    <h2>Custom Design</h2>
-    <p>Each design is perfected through our experienced team from colors, shapes and finishing.</p>
-    <ul class="checks">
-      <li>Different colours</li>
-      <li>Different finishes</li>
-      <li>Different styles and decorations</li>
-    </ul>
-    <a class="btn ghost" href="contact.html" data-enquire>Ask about this</a>
-  </div>
-</div>
-
-<div class="two flip" id="private-label">
-  <div class="photo slideshow">
-    <img class="slide active" src="Product/HNail-simple design/PFB0420202604.jpg" alt="Private label 1">
-    <img class="slide" src="Product/HNail-simple design/PFB0420202605.jpg" alt="Private label 2">
-    <img class="slide" src="Product/HNail-simple design/PFB0507202603.jpg" alt="Private label 3">
-  </div>
-  <div>
-    <h2>Private Label</h2>
-    <p>Sell our existing designs under your own brand. We handle production, you handle the market.</p>
-    <ul class="checks">
-      <li>Your logo on every product</li>
-      <li>Custom packaging available</li>
-      <li>Low minimum order quantities</li>
-    </ul>
-    <a class="btn ghost" href="contact.html" data-enquire>Ask about this</a>
-  </div>
-</div>
-
-<div class="two" id="packaging">
-  <div class="photo slideshow">
-    <img class="slide active" src="Product/HNail-simple design/PFB0420202604.jpg" alt="Packaging 1">
-    <img class="slide" src="Product/HNail-simple design/PFB0420202605.jpg" alt="Packaging 2">
-    <img class="slide" src="Product/HNail-simple design/PFB0507202603.jpg" alt="Packaging 3">
-  </div>
-  <div>
-    <h2>Custom Packaging</h2>
-    <p>Boxes, cards and inserts printed with your logo and brand colours, ready for retail shelves.</p>
-    <ul class="checks">
-      <li>Custom box design and printing</li>
-      <li>Retail ready packaging</li>
-      <li>Eco friendly materials available</li>
-    </ul>
-    <a class="btn ghost" href="contact.html" data-enquire>Ask about this</a>
-  </div>
-</div>
-
-<div class="two flip" id="wholesale">
-  <div class="photo slideshow">
-    <img class="slide active" src="Product/HNail-simple design/PFB0420202604.jpg" alt="Wholesale 1">
-    <img class="slide" src="Product/HNail-simple design/PFB0420202605.jpg" alt="Wholesale 2">
-    <img class="slide" src="Product/HNail-simple design/PFB0507202603.jpg" alt="Wholesale 3">
-  </div>
-  <div>
-    <h2>Wholesale / B2B</h2>
-    <p>Bulk orders for distributors, salons and retailers. Competitive pricing with consistent quality.</p>
-    <ul class="checks">
-      <li>Volume pricing available</li>
-      <li>Dedicated account manager</li>
-      <li>Flexible shipping options</li>
-    </ul>
-    <a class="btn ghost" href="contact.html" data-enquire>Ask about this</a>
-  </div>
-</div>
-
-</div></section>
-
-<section class="tint"><div class="wrap">
-  <div class="head-row"><h2>What you can customise</h2></div>
-  <div class="reasons">
-    <div class="reason"><h3>Shapes and lengths</h3><p>Square, squoval, almond, coffin, stiletto — short to extra long.</p></div>
-    <div class="reason"><h3>Colors and finishes</h3><p>Glossy, matte, chrome, glitter, ombre and more across every SKU.</p></div>
-    <div class="reason"><h3>Designs and art</h3><p>Hand painted detail, 3D charms, rhinestones and multi-color decoration.</p></div>
-    <div class="reason"><h3>Adhesive type</h3><p>Glue tabs, nail glue or full application kits included in the set.</p></div>
-    <div class="reason"><h3>Logo and branding</h3><p>Your logo printed or embossed on every nail and on the packaging.</p></div>
-    <div class="reason"><h3>Packaging</h3><p>Blister cards, folding boxes, rigid gift boxes, pouches and tins.</p></div>
+<section class="contact-intro"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>Contact</nav>
+  <div class="contact-intro-grid">
+    <h1>Let’s talk about<br>your next collection.</h1>
+    <p>From a design reference to a production-ready range, tell us what you have in mind. We’ll help you map out the next step.</p>
   </div>
 </div></section>
-<section class="dark"><div class="wrap">
-  <h2>"Section title, e.g. How we work together"</h2>
-  <p class="lead">"One sentence about your process."</p>
-  <div class="steps">
-  <div class="step"><h3>"Step 1, e.g. Inquiry and consultation"</h3><p>"What happens in this step, e.g. you share designs, quantities, and packaging needs, and we send a quote."</p></div>
-  <div class="step"><h3>"Step 2, e.g. Samples and approval"</h3><p>"What happens in this step, e.g. we make samples so you can check quality before production."</p></div>
-  <div class="step"><h3>"Step 3, e.g. Production and delivery"</h3><p>"What happens in this step, e.g. we produce, inspect, pack, and ship to your warehouse."</p></div>
-</div>
-  <a class="btn" href="contact.html" data-enquire>Start your project</a>
+<section class="contact-main"><div class="wrap contact-layout">
+  <aside class="contact-aside" aria-label="Enquiry guidance">
+    <h2>A good place to start.</h2>
+    <p class="contact-aside-intro">A few details help us understand your project and respond with useful next steps.</p>
+    <div class="contact-guidance">
+      <p><span>01</span> Share the design, finish or collection you’re exploring.</p>
+      <p><span>02</span> Add your target quantity and any packaging needs.</p>
+      <p><span>03</span> Include a style code or attach references in your email reply.</p>
+    </div>
+    <div class="contact-direct">
+      <span>Prefer email?</span>
+      <a href="mailto:aaron@seungilchem.com">aaron@seungilchem.com</a>
+    </div>
+  </aside>
+  <form class="form enq contact-form" id="contact-form" novalidate>
+    <div class="contact-form-heading"><p>START A CONVERSATION</p><h2>Tell us about your project.</h2></div>
+    <div class="contact-quote-banner">
+      <p>Want to save time and get a final quotation?</p>
+      <a href="#contact-form-fields">Fill in our detailed quote form <span aria-hidden="true">→</span></a>
+    </div>
+    <div id="contact-form-fields">
+    <div class="row2">
+      <div><label for="c-name">Your name <span class="req" aria-hidden="true">*</span></label><input id="c-name" name="name" autocomplete="name" required></div>
+      <div><label for="c-email">Email <span class="req" aria-hidden="true">*</span></label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+      <div><label for="c-company">Company <span class="req" aria-hidden="true">*</span></label><input id="c-company" name="company" autocomplete="organization" required></div>
+      <div><label for="c-quantity">Estimated quantity</label><input id="c-quantity" name="quantity" inputmode="numeric" placeholder="e.g. 3,000 sets"></div>
+    </div>
+    <div class="contact-timeframe">
+      <label for="c-needed">When do you need the products?</label>
+      <select id="c-needed" name="needed"><option value="">Select a timeframe</option><option>Within 2 weeks</option><option>Within 1 month</option><option>In 2–3 months</option><option>Flexible</option></select>
+    </div>
+    <label for="c-msg">What do you need? <span class="req" aria-hidden="true">*</span></label>
+    <textarea id="c-msg" name="message" placeholder="Products, designs, packaging…" required></textarea>
+    </div>
+    <p class="error" role="alert" aria-live="polite"></p>
+    <div class="contact-submit-row"><button type="submit" class="btn">Send enquiry <span aria-hidden="true">↗</span></button><p>Your email app will open with your enquiry ready to send.</p></div>
+  </form>
 </div></section>
 
 </main>
@@ -226,19 +171,5 @@
     </div>
   </form>
 </dialog>
-<script src="script.js"></script>
-<script>
-(function(){
-  var slides = document.querySelectorAll('.slideshow .slide');
-  if(!slides.length) return;
-  var current = 0;
-
-  setInterval(function(){
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
-    slides[current].classList.add('active');
-  }, 3000); // changes every 3 seconds — increase for slower
-})();
-</script>
 </body>
 </html>
