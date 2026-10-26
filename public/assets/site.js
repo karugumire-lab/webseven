@@ -349,3 +349,64 @@ document.querySelectorAll("form.enq").forEach((form) => {
     sections.forEach(s => observer.observe(s));
   }
 })();
+
+// Editorial motion: reveal in-view content without hiding it when JS is absent.
+(function () {
+  const root = document.documentElement;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reduceMotion.matches || !("IntersectionObserver" in window)) return;
+
+  const stagger = (selector, limit = 0.36) => {
+    document.querySelectorAll(selector).forEach((group) => {
+      [...group.children].forEach((item, index) => {
+        item.classList.add("motion-item");
+        item.style.setProperty("--motion-delay", `${Math.min(index * 0.08, limit)}s`);
+      });
+    });
+  };
+
+  const hero = document.querySelector(".home-hero, .page-hero, .solutions-hero, .contact-intro, .journal-hero, .catalog-hero");
+  if (hero) {
+    hero.classList.add("motion-hero");
+    hero.querySelectorAll(".eyebrow, .since, h1, .lead, .hero-buttons, .btn, .text-link").forEach((item, index) => {
+      item.classList.add("motion-enter");
+      item.style.setProperty("--motion-delay", `${0.14 + index * 0.11}s`);
+    });
+    hero.querySelectorAll(".hero-video, .arch, .solution-image, .journal-image").forEach((item) => item.classList.add("motion-media"));
+  }
+
+  const productTop = document.querySelector(".product-top");
+  if (productTop) {
+    productTop.querySelectorAll(".product-gallery, .product-summary").forEach((item, index) => {
+      item.classList.add("motion-enter");
+      item.style.setProperty("--motion-delay", `${index * 0.14}s`);
+    });
+    productTop.querySelectorAll(".product-eyebrow, h1, .product-intro, .product-features, .product-price-note, .product-options, .product-enquiry").forEach((item, index) => {
+      item.classList.add("motion-enter");
+      item.style.setProperty("--motion-delay", `${0.16 + index * 0.07}s`);
+    });
+  }
+
+  document.querySelectorAll(".site-announcement, .site-header").forEach((item, index) => {
+    item.classList.add("motion-enter");
+    item.style.setProperty("--motion-delay", `${index * 0.06}s`);
+  });
+
+  document.querySelectorAll("main > section:not(:first-child), .home-facts, .service-index, .solution-services, .journal-article-section, .faq-grid, .contact-layout, .about-story, .about-capabilities, .about-credentials, .product-story, .product-process, .product-information, .product-related, .site-footer .footer-callout, .site-footer .foot").forEach((item) => item.classList.add("motion-item"));
+  stagger(".home-product-grid, .catalog-grid, .product-related-grid, .home-process-grid, .product-steps, .solution-services, .faq-answers, .site-footer .foot");
+
+  root.classList.add("motion-enhanced");
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".motion-enter, .motion-media").forEach((item) => item.classList.add("is-in"));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-in");
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+
+  document.querySelectorAll(".motion-item").forEach((item) => observer.observe(item));
+})();
