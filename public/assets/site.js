@@ -353,8 +353,6 @@ document.querySelectorAll("form.enq").forEach((form) => {
 // Editorial motion: reveal in-view content without hiding it when JS is absent.
 (function () {
   const root = document.documentElement;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (reduceMotion.matches || !("IntersectionObserver" in window)) return;
 
   const stagger = (selector, limit = 0.36) => {
     document.querySelectorAll(selector).forEach((group) => {
@@ -400,13 +398,36 @@ document.querySelectorAll("form.enq").forEach((form) => {
     document.querySelectorAll(".motion-enter, .motion-media").forEach((item) => item.classList.add("is-in"));
   });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("is-in");
-      observer.unobserve(entry.target);
-    });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-
-  document.querySelectorAll(".motion-item").forEach((item) => observer.observe(item));
+  const items = [...document.querySelectorAll(".motion-item")];
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    items.forEach((item) => observer.observe(item));
+  } else {
+    const revealVisible = () => {
+      items.forEach((item) => {
+        const bounds = item.getBoundingClientRect();
+        if (bounds.top < window.innerHeight * 0.92 && bounds.bottom > 0) {
+          item.classList.add("is-in");
+        }
+      });
+    };
+    let scheduled = false;
+    const scheduleReveal = () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        scheduled = false;
+        revealVisible();
+      });
+    };
+    window.addEventListener("scroll", scheduleReveal, { passive: true });
+    window.addEventListener("resize", scheduleReveal, { passive: true });
+    scheduleReveal();
+  }
 })();

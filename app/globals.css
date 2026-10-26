@@ -2550,7 +2550,10 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .motion-enhanced .motion-item,
   .motion-enhanced .motion-enter,
-  .motion-enhanced .motion-media { opacity: 1; clip-path: none; transform: none; transition: none; }
+  .motion-enhanced .motion-media { transform: none !important; clip-path: none !important; transition: opacity .18s ease !important; }
+  .motion-enhanced .motion-item.is-in,
+  .motion-enhanced .motion-enter.is-in,
+  .motion-enhanced .motion-media.is-in { opacity: 1; }
   .site-header .has-sub:hover .sub,
   .site-header .has-sub:focus-within .sub { animation: none; }
 }
